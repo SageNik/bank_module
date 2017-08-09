@@ -20,6 +20,7 @@ import java.sql.Date
 /**
  * Created by Ник on 19.07.2017.
  */
+@RequestMapping("home-operator")
 @Controller
 class CreditlineController {
 

@@ -23,18 +23,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder()
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+        http.csrf().disable()
                 http.authorizeRequests()
-                    .antMatchers("/home-operator/**").hasAnyAuthority("ROLE_ADMIN","ROLE_OPERATOR")
+                    .antMatchers("/home-operator/").hasAnyAuthority("ROLE_ADMIN","ROLE_OPERATOR")
                     .and().formLogin().loginPage("/home").permitAll()
                     .defaultSuccessUrl("/home-operator")
                         .failureUrl("/home?error")

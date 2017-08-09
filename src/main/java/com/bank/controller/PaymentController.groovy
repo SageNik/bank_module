@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam
 /**
  * Created by Ник on 21.07.2017.
  */
+@RequestMapping("home-operator")
 @Controller
 class PaymentController {
 

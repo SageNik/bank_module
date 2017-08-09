@@ -11,7 +11,7 @@ function paymentValidate(formId) {
 }
 
 function move_allPayments(itnClient) {
-    $.get('/allPayments', {itnClient: itnClient}, function (data) {
+    $.get('/home-operator/allPayments', {itnClient: itnClient}, function (data) {
         $('#clientContent').html(data);
         return false;
     });
@@ -28,7 +28,7 @@ $(document).ready(
 
                 $('#addPaym').prop("disabled", true);
 
-                $.post("/addPayment", {
+                $.post("/home-operator/addPayment", {
                         itnClient: client_itn,
                         creditlineId: credLin_id,
                         amount: credLin_amount
@@ -47,7 +47,7 @@ $(document).ready(
 function deletePayment(idPaym, idCredlin, itnClient) {
     $('.buttonPayDel').prop("disabled", true);
 
-    $.post("/deletePayment", {
+    $.post("/home-operator/deletePayment", {
         paymentId: idPaym,
         creditlineId: idCredlin,
         itnClient: itnClient

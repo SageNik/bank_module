@@ -22,7 +22,7 @@ $(document).ready(
 
                     $('#addClient').prop("disabled", true);
 
-                    $.post("/addClient", {
+                    $.post("/home-operator/addClient", {
                             name: name,
                             surname: surname,
                             itn: itn,
@@ -42,7 +42,7 @@ $(document).ready(
 $(document).ready(
     function () {
         $('#goToAddClient').click(function () {
-            $('#content1').load("addNewClient.ftl");
+            $('#content1').load("home-operator/addNewClient.ftl");
             return false;
         });
     });
@@ -55,7 +55,7 @@ $(document).ready(
                 var input = $("#input_data").val();
                 $("#search_cl").prop("disabled", true);
 
-                $.post("/searchClient", {
+                $.post("/home-operator/searchClient", {
                     searchCriteria: criteria,
                     inputData: input
                 }).done(function (data) {
@@ -72,7 +72,7 @@ $(document).ready(
 function deleteClient(itnCl) {
     $('.buttonClDel').prop("disabled", true);
 
-    $.post("/deleteClient", {
+    $.post("/home-operator/deleteClient", {
         itnClient: itnCl
     }).done(function (data) {
         $('#content1').html(data);
@@ -84,14 +84,14 @@ function deleteClient(itnCl) {
 }
 
 function moveToClient(itnCl) {
-    $.get('/client', {itnClient: itnCl}, function (data) {
+    $.get('/home-operator/client', {itnClient: itnCl}, function (data) {
         $('#content1').html(data);
         return false;
     });
 }
 
 function move_change(itnCl) {
-    $.get('/changeClient', {itnClient: itnCl}, function (data) {
+    $.get('/home-operator/changeClient', {itnClient: itnCl}, function (data) {
         $('#clientContent').html(data);
         return false;
     });
@@ -107,7 +107,7 @@ $(document).ready(
                 var phoneNumber = $("#phoneCl").val();
 
                 $('#changeCl').prop("disabled", true);
-                $.post("/updateClient", {
+                $.post("/home-operator/updateClient", {
                     name: name,
                     surname: surname,
                     itn: itn,

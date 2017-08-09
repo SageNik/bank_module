@@ -1,12 +1,11 @@
 package com.bank.controller
 
 import com.bank.BankModuleApplicationTests
-import com.bank.service.interfaces.ClientService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.annotation.Rollback
+import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
 
@@ -27,6 +26,10 @@ class ClientControllerTestIT extends BankModuleApplicationTests {
         response.statusCode == HttpStatus.OK
     }
 
+    @Shared
+    def ROLE_TO_USER = [
+            ADMIN:   [username: 'admin', passwordHash: 'admin123']]
+    @Unroll("calling #endpoint with user #user should return status #status")
     @Rollback
     def "Add Client POST"() {
 
@@ -40,10 +43,15 @@ class ClientControllerTestIT extends BankModuleApplicationTests {
         urlParams.put("name", name)
         urlParams.put("surname", surname)
         urlParams.put("phoneNumber", phoneNumber)
-        ResponseEntity<String> response = restTemplate.postForEntity(service("/addClient")+"?itn="+itn+
+        urlParams.put("username", user.username)
+        urlParams.put("password", user.passwordHash)
+        ResponseEntity<String> response = restTemplate.withBasicAuth(user.username,user.passwordHash).postForEntity(service("/addClient")+"?itn="+itn+
                 "&name="+name+"&surname="+surname+"&phoneNumber="+phoneNumber,urlParams,String.class)
         then:
-        response.statusCode == HttpStatus.OK
+        response.statusCode == status
+        where:
+        endpoint                  | user                 || status
+        ""                        | ROLE_TO_USER.ADMIN   || HttpStatus.OK
     }
 
     def "All Clients GET"() {

@@ -5,21 +5,21 @@
 $(document).ready(
     function () {
         $('#clients').click(function () {
-            $('#content1').load("clients.ftl");
+            $('#content1').load("home-operator/clients.ftl");
             return false;
         });
     });
 $(document).ready(
     function () {
         $('#all_credLin').click(function () {
-            $('#content1').load("creditlines.ftl");
+            $('#content1').load("home-operator/creditlines.ftl");
             return false;
         });
     });
 $(document).ready(
     function () {
         $('#addNewClient').click(function () {
-            $('#content1').load("addNewClient.ftl");
+            $('#content1').load("home-operator/addNewClient.ftl");
             return false;
         });
     });
@@ -70,7 +70,7 @@ function onlyFloatNumber(obj) {
 $(document).ready(
     function () {
         $('#search_client').click(function () {
-            $('#content1').load("clients.ftl");
+            $('#content1').load("home-operator/clients.ftl");
             return false;
         });
     });

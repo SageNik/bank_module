@@ -22,10 +22,10 @@ public class BankModuleApplicationTests extends Specification{
     }
 
         URI serviceURI(String path = "") {
-            new URI("http://localhost:8080${path}")
+            new URI("http://localhost:8080/home-operator${path}")
     }
 
     String service(String path = "") {
-        new String("http://localhost:8080${path}")
+        new String("http://localhost:8080/home-operator${path}")
     }
 }

@@ -11,7 +11,7 @@ function creditlineValidate(formId) {
 }
 
 function move_addNewCreditline(clientItn) {
-    $.get('/addNewCreditline', {itnClient: clientItn}, function (data) {
+    $.get('/home-operator/addNewCreditline', {itnClient: clientItn}, function (data) {
         $('#clientContent').html(data);
         return false;
     });
@@ -25,7 +25,7 @@ $(document).ready(
                 var input = $("#input_date").val();
                 $("#searchCreditline").prop("disabled", true);
 
-                $.post("/searchCreditline", {
+                $.post("/home-operator/searchCreditline", {
                     searchCriteria: criteria,
                     inputDate: input
                 }).done(function (data) {
@@ -50,7 +50,7 @@ $(document).ready(
 
                 $('#calcBut').prop("disabled", true);
 
-                $.post("/calcPaymentCreditline", {
+                $.post("/home-operator/calcPaymentCreditline", {
                     creditPercent: percent,
                     creditAmount: amount,
                     creditTime: duration,
@@ -80,7 +80,7 @@ $(document).ready(
 
                 $('#openCredlin').prop("disabled", true);
 
-                $.post("/addCreditline", {
+                $.post("/home-operator/addCreditline", {
                         itnClient: itnClient,
                         percent: percent,
                         amount: amount,
@@ -100,14 +100,14 @@ $(document).ready(
     });
 
 function move_allCreditlines(itnClient) {
-    $.get('/allClientCreditlines', {itnClient: itnClient}, function (data) {
+    $.get('/home-operator/allClientCreditlines', {itnClient: itnClient}, function (data) {
         $('#clientContent').html(data);
         return false;
     });
 }
 
 function move_allCurCreditlines(itnClient) {
-    $.get('/allCurCreditlines', {itnClient: itnClient}, function (data) {
+    $.get('/home-operator/allCurCreditlines', {itnClient: itnClient}, function (data) {
         $('#clientContent').html(data);
         return false;
     });
@@ -115,7 +115,7 @@ function move_allCurCreditlines(itnClient) {
 
 function move_showCreditline(id_credLine, itnClient) {
 
-    $.get('/showCreditline', {
+    $.get('/home-operator/showCreditline', {
         idCredline: id_credLine,
         itnClient: itnClient
     }, function (data) {
@@ -127,7 +127,7 @@ function move_showCreditline(id_credLine, itnClient) {
 function deleteCreditline(idCredlin,itnClient) {
     $('#deleteCreditline').prop("disabled", true);
 
-    $.post("/deleteCreditline", {
+    $.post("/home-operator/deleteCreditline", {
         creditlineId: idCredlin,
         itnClient: itnClient
     }).done(function (data) {
@@ -142,7 +142,7 @@ function deleteCreditline(idCredlin,itnClient) {
 function closeCreditLine(idCredlin, itnClient) {
     $('#closeCredLine').prop("disable", true);
 
-    $.post("/closeCreditline",{
+    $.post("/home-operator/closeCreditline",{
         creditlineId: idCredlin,
         itnClient: itnClient
     }).done(function (data) {
@@ -156,11 +156,11 @@ function closeCreditLine(idCredlin, itnClient) {
 
 function showCreditline(id_credLine, itnClient) {
 
-    $.get('/client', {itnClient: itnClient}, function (data) {
+    $.get('/home-operator/client', {itnClient: itnClient}, function (data) {
         $('#content1').html(data);
         return false;
     });
-    $.get('/showCreditline', {
+    $.get('/home-operator/showCreditline', {
         idCredline: id_credLine,
         itnClient: itnClient
     }, function (data) {
